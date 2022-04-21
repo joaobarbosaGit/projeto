@@ -22,7 +22,7 @@ npm ci
 Construção do conteiner docker
 
 ```sh
-docker-compose --build
+docker-compose up --build
 ```
 
 Criação do banco de dados (Caso necessite), primeiro acessar o volume do banco
@@ -58,7 +58,7 @@ npm rum migrate
 se necessario restart o container execute novamente o comando
 
 ```sh
-docker-compose --build
+docker-compose up --build
 ```
 
 Abra http://127.0.0.1:3000 no seu navegador para acessar a pagina principal
