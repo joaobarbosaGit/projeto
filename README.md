@@ -3,73 +3,71 @@
 This application is generated using [LoopBack 4 CLI](https://loopback.io/doc/en/lb4/Command-line-interface.html) with the
 [initial project layout](https://loopback.io/doc/en/lb4/Loopback-application-layout.html).
 
-## Install dependencies
+## Instalando Dependencias
 
-By default, dependencies were installed when this application was generated.
-Whenever dependencies in `package.json` are changed, run the following command:
+Por padrão, as dependências foram instaladas quando este aplicativo foi gerado. Sempre que as dependências em`package.json` forem alterados, execute o seguinte comando:
 
 ```sh
 npm install
 ```
 
-To only install resolved dependencies in `package-lock.json`:
+Para instalar apenas dependências resolvidas em `package-lock.json`:
 
 ```sh
 npm ci
 ```
 
-## Run the application
+## Executar a Aplicação
+
+Construção do conteiner docker
 
 ```sh
-npm start
+docker-compose --build
 ```
 
-You can also run `node .` to skip the build step.
-
-Open http://127.0.0.1:3000 in your browser.
-
-## Rebuild the project
-
-To incrementally build the project:
+Criação do banco de dados (Caso necessite), primeiro acessar o volume do banco
 
 ```sh
-npm run build
+docker-compose exec db bash
 ```
 
-To force a full build by cleaning up cached artifacts:
+em seguida acessar o mysql
 
 ```sh
-npm run rebuild
+mysql -uroot -proot
 ```
 
-## Fix code style and formatting issues
+scritp sql de criação do banco
 
 ```sh
-npm run lint
+create database api_projeto;
 ```
 
-To automatically fix such issues:
+em seguida em outro terminal acesse o volume da aplicação
 
 ```sh
-npm run lint:fix
+docker-compose exec app bash
 ```
 
-## Other useful commands
-
-- `npm run migrate`: Migrate database schemas for models
-- `npm run openapi-spec`: Generate OpenAPI spec into a file
-- `npm run docker:build`: Build a Docker image for this application
-- `npm run docker:run`: Run this application inside a Docker container
-
-## Tests
+execute o scrip de criacao das tabelas a partir dos models
 
 ```sh
-npm test
+npm rum migrate
 ```
+
+se necessario restart o container execute novamente o comando
+
+```sh
+docker-compose --build
+```
+
+Abra http://127.0.0.1:3000 no seu navegador para acessar a pagina principal
+
+Abra http://127.0.0.1:3000/explorer/ para acessar a documentação
 
 ## What's next
 
 Please check out [LoopBack 4 documentation](https://loopback.io/doc/en/lb4/) to
 understand how you can continue to add features to this application.
 
-[![LoopBack](https://github.com/loopbackio/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png)](http://loopback.io/)
+[![LoopBack](<https://github.com/loopbackio/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png>)](http://loopback.io/)
